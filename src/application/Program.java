@@ -50,9 +50,13 @@ public class Program {
 				if(capturedPiece != null) {
 					captured.add(capturedPiece);
 				}
-				if(capturedPiece instanceof Queen) {
-						System.out.println("Perdeu a rainha trouxa");
-					}
+				
+				if(chessMatch.getPromoted() != null) {
+					System.out.println("Enter piece for promotio (B/N/R/Q): ");
+					String type = sc.nextLine();
+					chessMatch.replacePromotedPiece(type);
+				}
+
 			}
 			catch(ChessException e) {
 				System.out.println(e.getMessage());
