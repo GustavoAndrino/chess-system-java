@@ -5,12 +5,11 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import boardgame.Board;
-import boardgame.Position;
 import chess.ChessException;
 import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
+import chess.pieces.Queen;
 
 public class Program {
 
@@ -25,6 +24,15 @@ public class Program {
 			try {			
 				UI.clearScreen();
 				UI.printMatch(chessMatch, captured);
+				
+				if(captured.size()>0) {
+					ChessPiece last = captured.get(captured.size() - 1);
+					if(last instanceof Queen) {
+						System.out.println();
+						System.out.println("Perdeu a rainha TROUXA");
+					}
+				}
+				
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc); 
@@ -42,6 +50,9 @@ public class Program {
 				if(capturedPiece != null) {
 					captured.add(capturedPiece);
 				}
+				if(capturedPiece instanceof Queen) {
+						System.out.println("Perdeu a rainha trouxa");
+					}
 			}
 			catch(ChessException e) {
 				System.out.println(e.getMessage());
